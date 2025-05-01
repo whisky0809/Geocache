@@ -1,0 +1,4 @@
+../source/utils/gps/gps.c:24:5:gpsInit	8	static
+../source/utils/gps/gps.c:46:6:updatePosition	24	static
+../source/utils/gps/gps.c:86:6:parseNMEA	48	static
+../source/utils/gps/gps.c:138:7:convertToDecimal	40	static
