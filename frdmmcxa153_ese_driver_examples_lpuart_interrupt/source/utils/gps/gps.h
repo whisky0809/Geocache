@@ -16,16 +16,13 @@
 //#include <string.h>
 
 //variables defines
-/*
+
 #ifdef DEBUG
 #define TARGETSTR "Debug"
 #else
 #define TARGETSTR "Release"
 #endif
 
-#define EARTH_RADIUS 6371000  // Earth rad in meters
-#define PI 3.14159265359
-//structs
 typedef struct Coordinates
 	{
 		float lon;
@@ -34,37 +31,13 @@ typedef struct Coordinates
 		char latDir;
 	}coordinates_t;
 
-typedef struct Direction
-{
- 	char abreviation[2];
-}direction_t;
+
 
 int gpsInit(void);
-void updatePosition();
 float convertToDecimal(float value,char direction);
-void parseNMEA(char buffer[128], coordinates_t *boxCoordinates);
-
 char * strsep (char **stringp, const char *delim);
-*/
-#ifdef DEBUG
-#define TARGETSTR "Debug"
-#else
-#define TARGETSTR "Release"
-#endif
-
-typedef struct Coordinates
-	{
-		float lon;
-		float lat;
-		char lonDir;
-		char latDir;
-	}coordinates_t;
-
-int gpsInit(void);
-
-float convertToDecimal(float value,char direction);
-
 void parseNMEA(char buffer[128], coordinates_t *boxCoordinates);
-void updatePosition(char(*buffer)[128], coordinates_t *boxCoordinates);
+coordinates_t getPosition();
+void updatePosition();
 
 #endif /* UTILS_GPS_GPS_H_ */

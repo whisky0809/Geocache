@@ -10,12 +10,19 @@
 #include "../source/utils/gps/gps.h"
 #include "math.h"
 #include "stdlib.h"
-/*
+#include <stdio.h>
+
+
+const float PI = 3.14159265359;
+bool_t successFlag = FALSE;
+
 float distance(coordinates_t loc1, coordinates_t loc2) { //Haversine distance formula
+
 
 
 	float differenceLat = degToRad(loc2.lat - loc1.lat);
     float differenceLon = degToRad(loc2.lon - loc1.lon);
+
 
 
 
@@ -28,6 +35,7 @@ float distance(coordinates_t loc1, coordinates_t loc2) { //Haversine distance fo
     float d = EARTH_RADIUS * c;  // Distance in meters
     if(d < TARGET_RADIUS)
     {
+    	setSuccessFlag(TRUE);
     	//arrived at location
 
     }
@@ -43,10 +51,10 @@ float calculateBearing(coordinates_t loc1, coordinates_t loc2) { //formula to ca
 
     float differenceLon = lon2 - lon1;
 
-    float y = sin(differenceLon) * cos(lat2);
-    float x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(differenceLon);
+    float x = sin(differenceLon) * cos(lat2);
+    float y = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(differenceLon);
 
-    float bearing = atan2(y, x);
+    float bearing = atan2(x, y);
     bearing = radToDeg(bearing); // Convert to degrees
 
     if (bearing < 0) {
@@ -57,6 +65,14 @@ float calculateBearing(coordinates_t loc1, coordinates_t loc2) { //formula to ca
 
 }
 
+bool_t* getSuccessFlag()
+{
+return &successFlag;
+}
+void setSuccessFlag(bool_t setting)
+{
+	successFlag = setting;
+}
 
 float degToRad(float degrees) { //helper function for switching to radians
     return degrees * (PI / 180.0);
@@ -64,4 +80,4 @@ float degToRad(float degrees) { //helper function for switching to radians
 float radToDeg(float radians) { //helper function for switching to degrees
     return radians * (180.0 / PI);
 }
-*/
+

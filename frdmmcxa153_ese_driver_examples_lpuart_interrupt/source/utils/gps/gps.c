@@ -5,17 +5,18 @@
  *      Author: henri
  */
 #include "gps.h"
+#include "../source/games/gpsGame/gpsGame.h"
 #include "math.h"
 #include "stdlib.h"
 #include "string.h"
 #include "../source/utils/comProtocols/Lpuart/lpuart2_interrupt.h"
 #include "../source/utils/comProtocols/Lpuart/lpuart0_interrupt.h"
+#include <stdio.h>
 
-/*
 char buffer[128];
-coordinates_t boxCoordinates;
 coordinates_t targetCoordinates;
-*/
+coordinates_t boxCoordinates;
+
 
 // -----------------------------------------------------------------------------
 // Main application
@@ -24,7 +25,10 @@ coordinates_t targetCoordinates;
 int gpsInit(void)
 {
 
-
+	targetCoordinates.lon = 6.8845;
+	targetCoordinates.lat = 51.4186;
+	targetCoordinates.lonDir = 'E';
+	targetCoordinates.latDir = 'N';
 
 
 
@@ -43,36 +47,35 @@ int gpsInit(void)
 // Local function implementation
 // -----------------------------------------------------------------------------
 
-void updatePosition(char(*buffer)[128], coordinates_t *boxCoordinates)
+void updatePosition()
 {
 
-	while(lpuart2_rxcnt > 0)
+	while(lpuart2_rxcnt() > 0)
 	    	{
 	    	char c = (char)lpuart2_getchar();
-	    	strncat(*buffer, &c, 1);
-			printf("%c",c);
+	    	strncat(buffer, &c, 1);
+			//printf("%c",c);
 			if( c == '\n')
 			{
-				if(strncmp(*buffer, "$GNGGA",6) == 0)
+				if(strncmp(buffer, "$GNGGA",6) == 0)
 				{
 					printf("yes\n\n\r");
-					parseNMEA(*buffer, &boxCoordinates);
-					printf("Lon: %lf \n\r", boxCoordinates->lon);
-					printf("LonDir: %c \n\r", boxCoordinates->lonDir);
-					printf("Lat: %lf \n\r", boxCoordinates->lat);
-					printf("LatDir: %c \n\n\r", boxCoordinates->latDir);
-					//calculateBearing(&boxCoordinates,&targetCoordinates);
-					//float d = distance(boxCoordinates,targetCoordinates);
-					//printf("Distance NP: %lf \n", d);
-					//float b = calculateBearing(boxCoordinates,targetCoordinates);
-					//printf("Direction NP: %lf \n", b);
-		        	*buffer[0] = '\0'; //clear buffer
+					parseNMEA(buffer, &boxCoordinates);
+					printf("Lon: %lf \n\r", boxCoordinates.lon);
+					printf("LonDir: %c \n\r", boxCoordinates.lonDir);
+					printf("Lat: %lf \n\r", boxCoordinates.lat);
+					printf("LatDir: %c \n\n\r", boxCoordinates.latDir);
+					float d = distance(getPosition(), targetCoordinates);
+					printf("%lf \n\r", d);
+					float b = calculateBearing(getPosition(),targetCoordinates);
+					printf("Direction NP: %lf \n", b);
+		        	buffer[0] = '\0'; //clear buffer
 
 
 				}
 				else
 				{
-		        	*buffer[0] = '\0'; //clear buffer
+		        	buffer[0] = '\0'; //clear buffer
 
 				}
 			}
@@ -83,8 +86,11 @@ void updatePosition(char(*buffer)[128], coordinates_t *boxCoordinates)
 }
 
 
+
+
 void parseNMEA(char buffer[128], coordinates_t *boxCoordinates)
 {
+
 	float lon;
 	float lat;
 	char latDir;
@@ -121,8 +127,9 @@ void parseNMEA(char buffer[128], coordinates_t *boxCoordinates)
 
 	        //field 6:valid fix, field 7: number of satellites, field 8 horizontal dillution, field 9: altitude, field 10: geoidal seperation magnitude, field 11:geoidal seperation unit, field 12: differential GPS, field 13: stuff for error detection
 	        field++;
+			token = strsep(&buffer, ",");
 
-	        token = strtok(NULL, ","); // Move to the next field
+	        //token = strtok(NULL, ","); // Move to the next field
 	    }
 	    if (lat && lon && latDir && lonDir)
 	    {
@@ -146,8 +153,11 @@ float convertToDecimal(float value,char direction) { //formula to convert notati
 
     return decimal;
 }
-/*
 
+coordinates_t getPosition()
+{
+	return boxCoordinates;
+	}
 
 
 
@@ -182,4 +192,4 @@ char * strsep (char **stringp, const char *delim)
 
   return start;
 }
-*/
+
