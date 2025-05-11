@@ -40,13 +40,13 @@
 
 #define CYCLESUS 12
 //#define DO_INIT()					/* Initialize port for MMC DO as input */
-#define DO	(GPIO2->PDIR & (1<<13))	/* Test for MMC DO ('H':true, 'L':false) */
+#define DO	(GPIO2->PDIR & (1<<16))	/* Test for MMC DO ('H':true, 'L':false) */
 
 //#define DI_INIT()	DDRB  |= 0x02	/* Initialize port for MMC DI as output */
-//DO from microcobtroller DI from sd card
-#define DI_H()	GPIO2->PDOR |= (1<<16)
+//DO from microcontroller DI from sd card
+#define DI_H()	GPIO2->PDOR |= (1<<13)
 //PORTB |= 0x02	/* Set MMC DI "high" */
-#define DI_L()		GPIO2->PCOR |= (1<<16)
+#define DI_L()		GPIO2->PCOR |= (1<<13)
 //PORTB &= 0xFD	/* Set MMC DI "low" */
 
 //#define CK_INIT()	DDRB  |= 0x04	/* Initialize port for MMC SCLK as output */
@@ -445,14 +445,14 @@ DSTATUS disk_initialize (
     //DO from board perspective DI from sd card
 
     /* Initialize port pin tied to DI */
-    PORT2->PCR[16] = PORT_PCR_LK(1);
+    PORT2->PCR[13] = PORT_PCR_LK(1);
 
     DI_H();
 
     GPIO2->PDDR |= (1<<13);
 
     /* Initialize port pin tied to DO */
-    PORT2->PCR[13] = PORT_PCR_LK(1)| PORT_PCR_IBE(1) | PORT_PCR_MUX(0);
+    PORT2->PCR[16] = PORT_PCR_LK(1)| PORT_PCR_IBE(1) | PORT_PCR_MUX(0);
 
 
     //DI from board perspective DO from sd card
