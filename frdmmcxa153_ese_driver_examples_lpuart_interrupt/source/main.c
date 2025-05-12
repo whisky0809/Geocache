@@ -105,6 +105,9 @@ int main(void)
     	    		    printf("Mount failed with error code %d\n", fr);
     	    		    while (1);
     	    		}
+    		    printf("Mount succesful with error code %d\n", fr);
+    		    printf("disk_status: 0x%02X\n", disk_status(0));
+
     	    	fr = f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS);	//Create a file
     	    	if (fr == FR_OK) {
     	    		f_write(&Fil, "It works!\r\n", 11, &bw);	// Write data to the file

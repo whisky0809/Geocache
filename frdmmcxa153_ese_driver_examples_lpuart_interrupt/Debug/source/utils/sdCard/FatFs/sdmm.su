@@ -9,6 +9,6 @@
 ../source/utils/sdCard/FatFs/sdmm.c:340:6:send_cmd	24	static
 ../source/utils/sdCard/FatFs/sdmm.c:395:9:disk_status	16	static
 ../source/utils/sdCard/FatFs/sdmm.c:410:9:disk_initialize	32	static
-../source/utils/sdCard/FatFs/sdmm.c:512:9:disk_read	32	static
-../source/utils/sdCard/FatFs/sdmm.c:545:9:disk_write	32	static
-../source/utils/sdCard/FatFs/sdmm.c:584:9:disk_ioctl	40	static
+../source/utils/sdCard/FatFs/sdmm.c:513:9:disk_read	32	static
+../source/utils/sdCard/FatFs/sdmm.c:546:9:disk_write	32	static
+../source/utils/sdCard/FatFs/sdmm.c:585:9:disk_ioctl	40	static

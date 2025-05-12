@@ -496,6 +496,7 @@ DSTATUS disk_initialize (
 	}
 	CardType = ty;
 	s = ty ? 0 : STA_NOINIT;
+
 	Stat = s;
 
 	deselect();
