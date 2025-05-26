@@ -49,3 +49,13 @@
 ../source/utils/sdCard/FatFs/ff.c:4977:9:f_unlink	120	static
 ../source/utils/sdCard/FatFs/ff.c:5071:9:f_mkdir	96	static
 ../source/utils/sdCard/FatFs/ff.c:5155:9:f_rename	160	static
+../source/utils/sdCard/FatFs/ff.c:6445:8:f_gets	48	static
+../source/utils/sdCard/FatFs/ff.c:6597:13:putc_bfd	32	static
+../source/utils/sdCard/FatFs/ff.c:6728:12:putc_flush	24	static
+../source/utils/sdCard/FatFs/ff.c:6743:13:putc_init	16	static
+../source/utils/sdCard/FatFs/ff.c:6751:5:f_putc	96	static
+../source/utils/sdCard/FatFs/ff.c:6771:5:f_puts	96	static
+../source/utils/sdCard/FatFs/ff.c:6794:12:ilog10	24	static
+../source/utils/sdCard/FatFs/ff.c:6816:15:i10x	24	static
+../source/utils/sdCard/FatFs/ff.c:6838:13:ftoa	72	static
+../source/utils/sdCard/FatFs/ff.c:6915:5:f_printf	228	static

@@ -6789,7 +6789,8 @@ int f_puts (
 /*-----------------------------------------------------------------------*/
 #if FF_PRINT_FLOAT && FF_INTDEF == 2
 #include <math.h>
-
+#define isnan(x) ((x) != (x))
+#define isinf(x) (!isnan(x) && isnan((x) - (x)))
 static int ilog10 (double n)	/* Calculate log10(n) in integer output */
 {
 	int rv = 0;

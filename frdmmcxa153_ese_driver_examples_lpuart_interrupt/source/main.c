@@ -40,7 +40,7 @@
 #include "../source/utils/comProtocols/GPIO/gpio_output.h"
 #include "../source/utils/comProtocols/Lpuart/lpuart2_interrupt.h"
 #include "../source/utils/comProtocols/Lpuart/lpuart0_interrupt.h"
-#include "../source/utils/sdCard/FatFs/ff.h"		/* Declarations of FatFs API */
+#include "../source/utils/sdCard/sdCard.h"		/* Declarations of FatFs API */
 
 #include <math.h>
 #include <stdlib.h>
@@ -58,7 +58,7 @@
 
 typedef struct Direction
 {
- 	char abreviation[2];
+ 	char abreviation[128];
 }direction_t;
 
 enum gameState
@@ -76,6 +76,8 @@ LEVEL4
 // -----------------------------------------------------------------------------
 // Local variables
 // -----------------------------------------------------------------------------
+int ms = 0;
+int won = 0;
 
 // -----------------------------------------------------------------------------
 // Main application
@@ -87,57 +89,28 @@ int main(void)
 
 
 
-
+	int u = 1;
     gpio_output_init();
     gpsInit();
     int gameState = TUTORIAL;
-    FATFS FatFs;    // File system object
-    FIL Fil;        // File object
-    UINT bw, br;    // bw = bytes written, br = bytes read
-    FRESULT fr;
+    SysTick_Config(48000);
+    NVIC_SetPriority (SysTick_IRQn, 7);
 
-    	    	char readBuf[32];  // Buffer to read data into
+           // Enable interrupts
+  __enable_irq();
+   sdInit();
+   //sdWrite();
 
 
-    	    	fr = f_mount(&FatFs, "", 0);		// Give a work area to the default drive
-    	    	if (fr != FR_OK) {
-    	    		    // Handle mount failure
-    	    		    printf("Mount failed with error code %d\n", fr);
-    	    		    while (1);
-    	    		}
-    		    printf("Mount succesful with error code %d\n", fr);
-    		    printf("disk_status: 0x%02X\n", disk_status(0));
 
-    	    	fr = f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS);	//Create a file
-    	    	if (fr == FR_OK) {
-    	    		f_write(&Fil, "It works!\r\n", 11, &bw);	// Write data to the file
-    	    		fr = f_close(&Fil);							// Close the file
-    	    	}
-    	    	else
-    	    	{
-    	    		 printf("Writing failed with error code %d\n", fr);
-    	    			    while (1);
-    	    	}
 
-    	    	fr = f_open(&Fil, "newfile.txt", FA_READ);
-    	    	if (fr == FR_OK) {
-    	    	    f_read(&Fil, readBuf, sizeof(readBuf) - 1, &br);  // Read up to 31 bytes
-    	    	    readBuf[br] = '\0';  // Null-terminate the string
-    	    	    f_close(&Fil);
-    	    	}
-    	    	else
-    	    	{
-    	    		 printf("Reading failed with error code %d\n", fr);
-    	    			    while (1);
-    	    	}
-    	    	 for(int i = 0; i < 31; i++)
-    	    	 {
-    	    	    printf("%c", readBuf[i]);
-    	    	 }
+   //use f_unlink to delete the file after the run
+
     while(1)
     {
     	updatePosition(); // checks buffer for new relevant NMEA sentence every cycle
     	//might add seperate file to handle all the game controlling and switching stuff
+
     	if(getSuccessFlag())
     	{
     		gameState++;
@@ -166,36 +139,17 @@ int main(void)
     	    break;
 
     	}
+    	if(won == 1)
+    	{
+    		sdRead();
+    		won = 0;
+    	}
+
+
+
     }
 
-/*
 
-    	FATFS FatFs;    // File system object
-    	FIL Fil;        // File object
-    	UINT bw, br;    // bw = bytes written, br = bytes read
-    	FRESULT fr;
-
-    	char readBuf[32];  // Buffer to read data into
-
-
-    	f_mount(&FatFs, "", 0);		/* Give a work area to the default drive
-
-    	fr = f_open(&Fil, "newfile.txt", FA_WRITE | FA_CREATE_ALWAYS);	/* Create a file
-    	if (fr == FR_OK) {
-    		f_write(&Fil, "It works!\r\n", 11, &bw);	/* Write data to the file
-    		fr = f_close(&Fil);							/* Close the file
-    	}
-
-    	fr = f_open(&Fil, "newfile.txt", FA_READ);
-    	if (fr == FR_OK) {
-    	    f_read(&Fil, readBuf, sizeof(readBuf) - 1, &br);  // Read up to 31 bytes
-    	    readBuf[br] = '\0';  // Null-terminate the string
-    	    f_close(&Fil);
-    	}
-    	 for(int i = 0; i < 31; i++)
-    	 {
-    	    printf("%c", readBuf[i]);
-    	 }*/
 }
 
 
@@ -203,4 +157,19 @@ int main(void)
 // Local function implementation
 // -----------------------------------------------------------------------------
 
+void SysTick_Handler(void)
+{
+	 	ms++;
+
+	    if((ms % 1000) == 0 && won == 0)
+	    {
+	    	sdLog(12, getTarget());
+	    }
+	    if((ms % 100000) == 0)
+	    	    {
+	    	won = 1;
+	   }
+
+
+}
 

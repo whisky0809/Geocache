@@ -22,5 +22,6 @@ source/utils/comProtocols/Lpuart \
 source/utils/comProtocols \
 source/utils/gps \
 source/utils/sdCard/FatFs \
+source/utils/sdCard \
 startup \
 

@@ -49,48 +49,38 @@ int gpsInit(void)
 
 void updatePosition()
 {
-
 	while(lpuart2_rxcnt() > 0)
-	    	{
-	    	char c = (char)lpuart2_getchar();
-	    	strncat(buffer, &c, 1);
-			//printf("%c",c);
-			if( c == '\n')
+	{
+		char c = (char)lpuart2_getchar();
+	    strncat(buffer, &c, 1);
+		//printf("%c",c);
+		if( c == '\n')
+		{
+			if(strncmp(buffer, "$GNGGA",6) == 0)
 			{
-				if(strncmp(buffer, "$GNGGA",6) == 0)
-				{
-					printf("yes\n\n\r");
-					parseNMEA(buffer, &boxCoordinates);
-					printf("Lon: %lf \n\r", boxCoordinates.lon);
-					printf("LonDir: %c \n\r", boxCoordinates.lonDir);
-					printf("Lat: %lf \n\r", boxCoordinates.lat);
-					printf("LatDir: %c \n\n\r", boxCoordinates.latDir);
-					float d = distance(getPosition(), targetCoordinates);
-					printf("%lf \n\r", d);
-					float b = calculateBearing(getPosition(),targetCoordinates);
-					printf("Direction NP: %lf \n", b);
-		        	buffer[0] = '\0'; //clear buffer
+				printf("yes\n\n\r");
+				parseNMEA(buffer, &boxCoordinates);
+				printf("Lon: %lf \n\r", boxCoordinates.lon);
+				printf("LonDir: %c \n\r", boxCoordinates.lonDir);
+				printf("Lat: %lf \n\r", boxCoordinates.lat);
+				printf("LatDir: %c \n\n\r", boxCoordinates.latDir);
+				float d = distance(getPosition(), targetCoordinates);
+				printf("%lf \n\r", d);
+				float b = calculateBearing(getPosition(),targetCoordinates);
+				printf("Direction NP: %lf \n", b);
 
-
-				}
-				else
-				{
-		        	buffer[0] = '\0'; //clear buffer
-
-				}
+				buffer[0] = '\0'; //clear buffer
 			}
-
-
+			else
+			{
+		        buffer[0] = '\0'; //clear buffer
+			}
+		}
+	}
 }
-
-}
-
-
-
 
 void parseNMEA(char buffer[128], coordinates_t *boxCoordinates)
 {
-
 	float lon;
 	float lat;
 	char latDir;
@@ -99,14 +89,13 @@ void parseNMEA(char buffer[128], coordinates_t *boxCoordinates)
 	char *ptr = buffer;
 	char *token; // Tokenize the NMEA sentence
 	int field = 0;
-	    while ((token = strsep(&ptr, ",")) != NULL) {
-	      //field 0: name, field 1: UTC time
-	       switch(field)
-	       {
-	        case 2:
-	        lat = atof(token);
-
-	        break;
+	while ((token = strsep(&ptr, ",")) != NULL) {
+	//field 0: name, field 1: UTC time
+	switch(field)
+	{
+		case 2:
+	    lat = atof(token);
+	    break;
 	        case 3:
 	        latDir = token[0];
 	        break;
@@ -157,6 +146,10 @@ float convertToDecimal(float value,char direction) { //formula to convert notati
 coordinates_t getPosition()
 {
 	return boxCoordinates;
+	}
+coordinates_t getTarget()
+{
+	return targetCoordinates;
 	}
 
 

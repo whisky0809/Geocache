@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include startup/subdir.mk
 -include source/utils/sdCard/FatFs/subdir.mk
+-include source/utils/sdCard/subdir.mk
 -include source/utils/gps/subdir.mk
 -include source/utils/comProtocols/Lpuart/subdir.mk
 -include source/utils/comProtocols/GPIO/subdir.mk

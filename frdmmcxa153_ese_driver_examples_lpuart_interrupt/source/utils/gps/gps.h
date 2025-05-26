@@ -38,6 +38,8 @@ float convertToDecimal(float value,char direction);
 char * strsep (char **stringp, const char *delim);
 void parseNMEA(char buffer[128], coordinates_t *boxCoordinates);
 coordinates_t getPosition();
+coordinates_t getTarget();
+
 void updatePosition();
 
 #endif /* UTILS_GPS_GPS_H_ */
