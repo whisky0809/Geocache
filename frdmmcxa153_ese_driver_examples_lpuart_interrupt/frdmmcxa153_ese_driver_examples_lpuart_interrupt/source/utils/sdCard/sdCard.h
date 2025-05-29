@@ -13,7 +13,7 @@
 #define FILENAME "log.txt"
 #define PATHNAME "0:/log.txt"
 void sdWrite();
-void sdLog(float temp, coordinates_t pos);
+void sdLog(uint8_t temp, coordinates_t pos);
 void sdRead();
 void sdInit();
 
