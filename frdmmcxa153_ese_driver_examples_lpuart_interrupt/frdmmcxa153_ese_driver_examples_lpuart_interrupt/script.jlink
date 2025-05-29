@@ -1,7 +1,0 @@
-ExitOnError 1
-r
-h
-loadfile "C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\Debug\frdmmcxa153_ese_driver_examples_lpuart_interrupt.hex" 0x0 
-qc
-
-qc

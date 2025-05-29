@@ -40,7 +40,8 @@
 #include "../source/utils/comProtocols/GPIO/gpio_output.h"
 #include "../source/utils/comProtocols/Lpuart/lpuart2_interrupt.h"
 #include "../source/utils/comProtocols/Lpuart/lpuart0_interrupt.h"
-#include "../source/utils/sdCard/sdCard.h"		/* Declarations of FatFs API */
+#include "../source/utils/sdCard/sdCard.h"
+#include "../source/utils/temperatureSensor/lm35d_polling.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -92,13 +93,15 @@ int main(void)
 	int u = 1;
     gpio_output_init();
     gpsInit();
+    sdInit();
+    lm35d_init();
     int gameState = TUTORIAL;
     SysTick_Config(48000);
     NVIC_SetPriority (SysTick_IRQn, 7);
 
            // Enable interrupts
   __enable_irq();
-   sdInit();
+
    //sdWrite();
 
 
@@ -163,7 +166,7 @@ void SysTick_Handler(void)
 
 	    if((ms % 1000) == 0 && won == 0)
 	    {
-	    	sdLog(12, getTarget());
+	    	sdLog(lm35d_get_temperature(), getTarget());
 	    }
 	    if((ms % 100000) == 0)
 	    	    {

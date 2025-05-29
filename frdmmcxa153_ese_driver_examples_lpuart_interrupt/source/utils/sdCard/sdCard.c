@@ -41,7 +41,7 @@ void sdWrite()
 	    	    		fr = f_close(&Fil);
 	    	    	}
 }
-void sdLog(float temp, coordinates_t pos)
+void sdLog(uint8_t temp, coordinates_t pos)
 {
 	fr = f_open(&Fil, FILENAME, FA_WRITE | FA_OPEN_ALWAYS | FA_OPEN_APPEND);	//Create a file
 	    	    	if (fr == FR_OK) {

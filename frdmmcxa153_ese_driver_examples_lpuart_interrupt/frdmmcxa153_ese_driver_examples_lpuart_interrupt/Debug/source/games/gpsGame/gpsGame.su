@@ -1,6 +1,0 @@
-../source/games/gpsGame/gpsGame.c:19:7:distance	64	static
-../source/games/gpsGame/gpsGame.c:46:7:calculateBearing	72	static
-../source/games/gpsGame/gpsGame.c:68:9:getSuccessFlag	4	static
-../source/games/gpsGame/gpsGame.c:72:6:setSuccessFlag	16	static
-../source/games/gpsGame/gpsGame.c:77:7:degToRad	24	static
-../source/games/gpsGame/gpsGame.c:80:7:radToDeg	24	static

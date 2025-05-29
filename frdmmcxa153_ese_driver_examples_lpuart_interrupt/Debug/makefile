@@ -9,6 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include startup/subdir.mk
+-include source/utils/temperatureSensor/subdir.mk
 -include source/utils/sdCard/FatFs/subdir.mk
 -include source/utils/sdCard/subdir.mk
 -include source/utils/gps/subdir.mk
