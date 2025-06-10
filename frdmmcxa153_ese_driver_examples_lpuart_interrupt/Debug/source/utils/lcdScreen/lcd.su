@@ -1,0 +1,11 @@
+../source/utils/lcdScreen/lcd.c:9:6:delay_us	24	static
+../source/utils/lcdScreen/lcd.c:14:13:i2c_send	16	static
+../source/utils/lcdScreen/lcd.c:26:13:lcd_pulse_enable	16	static
+../source/utils/lcdScreen/lcd.c:34:13:lcd_write4bits	16	static
+../source/utils/lcdScreen/lcd.c:40:13:lcd_send	24	static
+../source/utils/lcdScreen/lcd.c:48:6:lcd_send_cmd	16	static
+../source/utils/lcdScreen/lcd.c:53:6:lcd_send_data	16	static
+../source/utils/lcdScreen/lcd.c:58:6:lcd_init	8	static
+../source/utils/lcdScreen/lcd.c:78:6:lcd_send_string	16	static
+../source/utils/lcdScreen/lcd.c:86:6:lcd_clear	8	static
+../source/utils/lcdScreen/lcd.c:92:6:lcd_set_cursor	24	static

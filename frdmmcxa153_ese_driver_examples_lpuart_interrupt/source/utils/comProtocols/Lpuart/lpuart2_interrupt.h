@@ -38,5 +38,6 @@ void lpuart2_init(const uint32_t baudrate);
 void lpuart2_putchar(const int data);
 int lpuart2_getchar(void);
 uint32_t lpuart2_rxcnt(void);
-
+void disableLpuart2();
+void enableLpuart2();
 #endif // LPUART2_INTERRUPT_H

@@ -12,9 +12,11 @@
 #include "../source/utils/comProtocols/Lpuart/lpuart2_interrupt.h"
 #include "../source/utils/comProtocols/Lpuart/lpuart0_interrupt.h"
 #include <stdio.h>
-
+int fix = 0;
 char buffer[128];
 coordinates_t targetCoordinates;
+coordinates_t testCoordinates;
+
 coordinates_t boxCoordinates;
 
 
@@ -29,6 +31,10 @@ int gpsInit(void)
 	targetCoordinates.lat = 51.4186;
 	targetCoordinates.lonDir = 'E';
 	targetCoordinates.latDir = 'N';
+	testCoordinates.lon = 0;
+	testCoordinates.lat = 90;
+	testCoordinates.lonDir = 'E';
+	testCoordinates.latDir = 'N';
 
 
 
@@ -37,9 +43,9 @@ int gpsInit(void)
     lpuart0_init(9600);
 
 
-    printf("LPUART0 Interrupt");
-    printf(" - %s\r\n", TARGETSTR);
-    printf("Build %s %s\r\n", __DATE__, __TIME__);
+    //printf("LPUART0 Interrupt");
+    //printf(" - %s\r\n", TARGETSTR);
+    //printf("Build %s %s\r\n", __DATE__, __TIME__);
 
 }
 
@@ -47,27 +53,20 @@ int gpsInit(void)
 // Local function implementation
 // -----------------------------------------------------------------------------
 
-void updatePosition()
+ void updatePosition()
 {
+
 	while(lpuart2_rxcnt() > 0)
 	{
 		char c = (char)lpuart2_getchar();
-	    strncat(buffer, &c, 1);
-		//printf("%c",c);
+		strncat(buffer, &c, 1);
 		if( c == '\n')
 		{
 			if(strncmp(buffer, "$GNGGA",6) == 0)
 			{
-				printf("yes\n\n\r");
 				parseNMEA(buffer, &boxCoordinates);
-				printf("Lon: %lf \n\r", boxCoordinates.lon);
-				printf("LonDir: %c \n\r", boxCoordinates.lonDir);
-				printf("Lat: %lf \n\r", boxCoordinates.lat);
-				printf("LatDir: %c \n\n\r", boxCoordinates.latDir);
-				float d = distance(getPosition(), targetCoordinates);
-				printf("%lf \n\r", d);
-				float b = calculateBearing(getPosition(),targetCoordinates);
-				printf("Direction NP: %lf \n", b);
+				float d = distance(&testCoordinates, &targetCoordinates);
+				float b = calculateBearing(&testCoordinates,&targetCoordinates);
 
 				buffer[0] = '\0'; //clear buffer
 			}
@@ -108,6 +107,7 @@ void parseNMEA(char buffer[128], coordinates_t *boxCoordinates)
 
 	        break;
 	        case 6:
+	        fix = atoi(token);
 	        break;
 	        case 7:
 	        nrSat = atoi(token);
@@ -143,15 +143,19 @@ float convertToDecimal(float value,char direction) { //formula to convert notati
     return decimal;
 }
 
-coordinates_t getPosition()
+coordinates_t* getPosition()
 {
-	return boxCoordinates;
+	return &boxCoordinates;
 	}
-coordinates_t getTarget()
+coordinates_t* getTarget()
 {
-	return targetCoordinates;
+	return &targetCoordinates;
 	}
 
+int getFix()
+{
+ return fix;
+}
 
 
 

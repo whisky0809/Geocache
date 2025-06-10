@@ -74,13 +74,13 @@ void lpuart2_init(const uint32_t baudrate)
     // LPUART2: [1] = Peripheral clock is enabled
     // PORT0: [1] = Peripheral clock is enabled
     MRCC0->MRCC_GLB_CC0_SET = MRCC_MRCC_GLB_CC0_LPUART2(1);
-    MRCC0->MRCC_GLB_CC0_SET = MRCC_MRCC_GLB_CC0_PORT1(1);
+    MRCC0->MRCC_GLB_CC1_SET = MRCC_MRCC_GLB_CC1_PORT3(1);
 
     // Release modules from reset and leave others unchanged
     // LPUART2: [1] = Peripheral is released from reset
     // PORT0: [1] = Peripheral is released from reset
     MRCC0->MRCC_GLB_RST0_SET = MRCC_MRCC_GLB_RST0_LPUART2(1);
-    MRCC0->MRCC_GLB_RST0_SET = MRCC_MRCC_GLB_RST0_PORT1(1);
+    MRCC0->MRCC_GLB_RST1_SET = MRCC_MRCC_GLB_RST1_PORT3(1);
 
     // Configure P1_4
     // LK : [1] = Locks this PCR
@@ -94,7 +94,7 @@ void lpuart2_init(const uint32_t baudrate)
     // SRE: [0] = Fast
     // PE:  [0] = Disables
     // PS:  [0] = n.a.
-    PORT1->PCR[4] = PORT_PCR_LK(1) | PORT_PCR_MUX(3) | PORT_PCR_IBE(1);
+    PORT3->PCR[14] = PORT_PCR_LK(1) | PORT_PCR_MUX(2) | PORT_PCR_IBE(1);
 
     // Configure P1_5
     // LK : [1] = Locks this PCR
@@ -107,7 +107,7 @@ void lpuart2_init(const uint32_t baudrate)
     // SRE: [0] = Fast
     // PE:  [0] = Disables
     // PS:  [0] = n.a.
-    PORT1->PCR[5] = PORT_PCR_LK(1) | PORT_PCR_MUX(3);
+    PORT3->PCR[15] = PORT_PCR_LK(1) | PORT_PCR_MUX(2);
 
     // Configure LPUART2. Although there are a lot of configuration options, the
     // default configuration takes the following steps:
@@ -167,7 +167,16 @@ uint32_t lpuart2_rxcnt(void)
 {
     return f_cnt(&rx);
 }
+void enableLpuart2()
+{
+    LPUART2->CTRL |= LPUART_CTRL_TE(1) | LPUART_CTRL_RIE(1) | LPUART_CTRL_RE(1);
 
+}
+void disableLpuart2()
+{
+    LPUART2->CTRL &= ~(LPUART_CTRL_TE(1) | LPUART_CTRL_RIE(1) | LPUART_CTRL_RE(1));
+
+}
 void LPUART2_IRQHandler(void)
 {
     uint8_t c;

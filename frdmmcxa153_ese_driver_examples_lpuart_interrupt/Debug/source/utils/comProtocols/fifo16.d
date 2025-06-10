@@ -1,10 +1,5 @@
-source/utils/sdCard/sdCard.o source/utils/sdCard/sdCard.d: \
- ../source/utils/sdCard/sdCard.c \
- C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/sdCard/FatFs/ff.h \
- C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/sdCard/FatFs/ffconf.h \
- C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/sdCard/sdCard.h \
- C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/gps/gps.h \
- C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/Lpuart/lpuart0_interrupt.h \
+source/utils/comProtocols/fifo16.o source/utils/comProtocols/fifo16.d: \
+ ../source/utils/comProtocols/fifo16.c \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_ADC.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153_COMMON.h \
@@ -51,12 +46,7 @@ source/utils/sdCard/sdCard.o source/utils/sdCard/sdCard.d: \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WAKETIMER.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WUU.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WWDT.h \
- C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/Lpuart/lpuart2_interrupt.h
-C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/sdCard/FatFs/ff.h:
-C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/sdCard/FatFs/ffconf.h:
-C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/sdCard/sdCard.h:
-C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/gps/gps.h:
-C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/Lpuart/lpuart0_interrupt.h:
+ C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/fifo16.h
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_ADC.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153_COMMON.h:
@@ -103,4 +93,4 @@ C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_drive
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WAKETIMER.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WUU.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WWDT.h:
-C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/Lpuart/lpuart2_interrupt.h:
+C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/fifo16.h:

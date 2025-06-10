@@ -64,12 +64,12 @@ typedef struct Direction
 
 enum gameState
 {
-TUTORIAL,
 LEVEL1,
 LEVEL2,
 LEVEL3,
 LEVEL4
 };
+coordinates_t targets[4];
 // -----------------------------------------------------------------------------
 // Local function prototypes
 // -----------------------------------------------------------------------------
@@ -79,7 +79,7 @@ LEVEL4
 // -----------------------------------------------------------------------------
 int ms = 0;
 int won = 0;
-
+int wrote = 1;
 // -----------------------------------------------------------------------------
 // Main application
 // -----------------------------------------------------------------------------
@@ -95,7 +95,7 @@ int main(void)
     gpsInit();
     sdInit();
     lm35d_init();
-    int gameState = TUTORIAL;
+    int gameState = LEVEL1; //change to settings from csv file
     SysTick_Config(48000);
     NVIC_SetPriority (SysTick_IRQn, 7);
 
@@ -121,32 +121,58 @@ int main(void)
 
     	switch(gameState)
     	{
-    	case TUTORIAL:
-    		//optional
-    		break;
+
     	case LEVEL1:
+    		//sdReadSettings(getTarget(),LEVEL1);
     		//add level One Gameloop
     		//needs to include updatePosition on every iteration as well so that logs work accurately
     	    break;
     	case LEVEL2:
+    		//sdReadSettings(getTarget(),LEVEL2);
+
     		//add level Two Gameloop
     		//needs to include updatePosition on every iteration as well so that logs work accurately
     	    break;
     	case LEVEL3:
+    		//sdReadSettings(getTarget(),LEVEL3);
+
     		//add level Three Gameloop
     		//needs to include updatePosition on every iteration as well so that logs work accurately
     		break;
     	case LEVEL4:
+    		//sdReadSettings(getTarget(),LEVEL4);
+
     		//add level Four Gameloop
     		//needs to include updatePosition on every iteration as well so that logs work accurately
     	    break;
 
     	}
+
     	if(won == 1)
     	{
-    		sdRead();
-    		won = 0;
+    		disableLpuart2();
+    		int closed = 0;
+    		while(!closed)
+    		{
+    			char c = lpuart0_getchar();
+    				if(c == '<')
+    				{
+    					sdReadLogs(); //send logs to laptop
+    					}
+
+    				else if(c == '>')
+    		    	{
+    		    		sdSettings(); //read settings from laptop
+    		   			}
+    				else if(c == '*')
+    				{
+    				    closed = 1; //read settings from laptop
+    				}
+    		}
+    		printf("done");
+    		won = 2;
     	}
+
 
 
 
@@ -164,15 +190,14 @@ void SysTick_Handler(void)
 {
 	 	ms++;
 
-	    if((ms % 1000) == 0 && won == 0)
+	    if((ms % 1000) == 0 && won == 0 && getFix() == 0)
 	    {
-	    	sdLog(lm35d_get_temperature(), getTarget());
+	    	sdLog(12, getPosition());
 	    }
-	    if((ms % 100000) == 0)
-	    	    {
+	    if((ms % 5000) == 0 && won == 0)
+	    {
 	    	won = 1;
-	   }
-
+	    }
 
 }
 

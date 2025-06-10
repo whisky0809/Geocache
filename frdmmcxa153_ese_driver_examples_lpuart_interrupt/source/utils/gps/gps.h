@@ -37,9 +37,11 @@ int gpsInit(void);
 float convertToDecimal(float value,char direction);
 char * strsep (char **stringp, const char *delim);
 void parseNMEA(char buffer[128], coordinates_t *boxCoordinates);
-coordinates_t getPosition();
-coordinates_t getTarget();
+coordinates_t* getPosition();
+coordinates_t* getTarget();
+coordinates_t setTarget(coordinates_t target);
 
+int getFix();
 void updatePosition();
 
 #endif /* UTILS_GPS_GPS_H_ */

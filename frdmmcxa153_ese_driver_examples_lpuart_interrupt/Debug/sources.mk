@@ -18,9 +18,11 @@ device \
 source/games/gpsGame \
 source \
 source/utils/comProtocols/GPIO \
+source/utils/comProtocols/Lpi2c \
 source/utils/comProtocols/Lpuart \
 source/utils/comProtocols \
 source/utils/gps \
+source/utils/lcdScreen \
 source/utils/sdCard/FatFs \
 source/utils/sdCard \
 source/utils/temperatureSensor \

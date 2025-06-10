@@ -16,18 +16,18 @@
 const float PI = 3.14159265359;
 bool_t successFlag = FALSE;
 
-float distance(coordinates_t loc1, coordinates_t loc2) { //Haversine distance formula
+float distance(coordinates_t* loc1, coordinates_t* loc2) { //Haversine distance formula
 
 
 
-	float differenceLat = degToRad(loc2.lat - loc1.lat);
-    float differenceLon = degToRad(loc2.lon - loc1.lon);
+	float differenceLat = degToRad(loc2->lat - loc1->lat);
+    float differenceLon = degToRad(loc2->lon - loc1->lon);
 
 
 
 
     float a = sin(differenceLat / 2) * sin(differenceLat / 2) +
-               cos(degToRad(loc1.lat)) * cos(degToRad(loc2.lat)) *
+               cos(degToRad(loc1->lat)) * cos(degToRad(loc2->lat)) *
                sin(differenceLon / 2) * sin(differenceLon / 2);
 
     float c = 2 * atan2(sqrt(a), sqrt(1 - a));
@@ -43,11 +43,11 @@ float distance(coordinates_t loc1, coordinates_t loc2) { //Haversine distance fo
 
 }
 
-float calculateBearing(coordinates_t loc1, coordinates_t loc2) { //formula to calculate bearing/compass direction of the second coordinate from the first in degrees and sort it into actual directions
-    float lat1 = degToRad(loc1.lat);
-    float lon1 = degToRad(loc1.lon);
-    float lat2 = degToRad(loc2.lat);
-    float lon2 = degToRad(loc2.lon);
+float calculateBearing(coordinates_t *loc1, coordinates_t* loc2) { //formula to calculate bearing/compass direction of the second coordinate from the first in degrees and sort it into actual directions
+    float lat1 = degToRad(loc1->lat);
+    float lon1 = degToRad(loc1->lon);
+    float lat2 = degToRad(loc2->lat);
+    float lon2 = degToRad(loc2->lon);
 
     float differenceLon = lon2 - lon1;
 

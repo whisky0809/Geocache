@@ -12,8 +12,10 @@ RM := rm -rf
 -include source/utils/temperatureSensor/subdir.mk
 -include source/utils/sdCard/FatFs/subdir.mk
 -include source/utils/sdCard/subdir.mk
+-include source/utils/lcdScreen/subdir.mk
 -include source/utils/gps/subdir.mk
 -include source/utils/comProtocols/Lpuart/subdir.mk
+-include source/utils/comProtocols/Lpi2c/subdir.mk
 -include source/utils/comProtocols/GPIO/subdir.mk
 -include source/utils/comProtocols/subdir.mk
 -include source/games/gpsGame/subdir.mk

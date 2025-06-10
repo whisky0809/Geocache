@@ -1,4 +1,8 @@
-../source/utils/sdCard/sdCard.c:22:6:sdInit	8	static
-../source/utils/sdCard/sdCard.c:32:6:sdWrite	8	static
-../source/utils/sdCard/sdCard.c:44:6:sdLog	64	static
-../source/utils/sdCard/sdCard.c:55:6:sdRead	24	static
+../source/utils/sdCard/sdCard.c:24:6:sdInit	8	static
+../source/utils/sdCard/sdCard.c:35:6:sdWrite	8	static
+../source/utils/sdCard/sdCard.c:47:6:sdSettings	16	static
+../source/utils/sdCard/sdCard.c:61:6:sdReadSettings	560	static
+../source/utils/sdCard/sdCard.c:86:6:sdLog	56	static
+../source/utils/sdCard/sdCard.c:98:6:sdRead	544	static
+../source/utils/sdCard/sdCard.c:121:6:sdReadLogs	8	static
+../source/utils/sdCard/sdCard.c:125:6:sdBufWrite	24	static

@@ -1,0 +1,12 @@
+C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\CMSIS/core_cm33.h:2358:22:__NVIC_EnableIRQ	16	static
+C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\CMSIS/core_cm33.h:2449:22:__NVIC_ClearPendingIRQ	16	static
+C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\CMSIS/core_cm33.h:2555:22:__NVIC_SetPriority	16	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:12:6:lpi2c0_controller_init	8	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:40:6:lpi2c0_putword	16	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:47:10:lpi2c0_getword	16	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:55:10:lpi2c0_rxcnt	8	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:60:10:lpi2c0_txcnt	8	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:65:13:lpi2c0_wait_busy	4	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:71:13:lpi2c0_txfifo_full	16	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:77:13:lpi2c0_rxfifo_empty	16	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:83:6:LPI2C0_IRQHandler	16	static
