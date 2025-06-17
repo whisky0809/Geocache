@@ -1,11 +1,5 @@
-/*
- * fifo16.c
- *
- *  Created on: 6 Jun 2025
- *      Author: henri
- */
 #include <MCXA153.h>
-#include "../source/utils/comProtocols/fifo16.h"
+#include "fifo16.h"
 
 void f16_init(fifo_t *f, uint16_t *buffer, const uint32_t size)
 {
@@ -62,5 +56,3 @@ inline uint32_t f16_cnt(fifo_t *f)
 {
     return f->cnt;
 }
-
-

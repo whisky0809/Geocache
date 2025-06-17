@@ -1,5 +1,6 @@
 #include "lcd.h"
-#include "../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.h"
+#include "../comProtocols/Lpi2C/lpi2c0_controller_interrupt.h"
+
 #include <stdint.h>
 
 #define LCD_ADDR 0x27
@@ -14,7 +15,6 @@ void delay_us(unsigned int us)
 static void i2c_send(uint8_t data)
 {
     // Toggle sanity LED (D13 on P3_15)
-    GPIO3->PTOR = (1 << 15);  // Toggle LED each time we send to I2C
 
     lpi2c0_wait_busy();
 

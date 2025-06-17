@@ -22,8 +22,8 @@ float distance(coordinates_t* loc1, coordinates_t* loc2);  //Haversine distance 
 float calculateBearing(coordinates_t* loc1, coordinates_t* loc2);
 float degToRad(float degrees);
 float radToDeg(float radians);
+float* getDistance();
+float* getBearing();
 
-bool_t* getSuccessFlag();
-void setSuccessFlag(bool_t setting);
 
 #endif /* GAMES_GPSGAME_GPSGAME_H_ */

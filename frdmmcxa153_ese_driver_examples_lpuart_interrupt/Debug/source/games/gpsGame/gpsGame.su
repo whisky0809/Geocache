@@ -1,6 +1,6 @@
-../source/games/gpsGame/gpsGame.c:19:7:distance	56	static
-../source/games/gpsGame/gpsGame.c:46:7:calculateBearing	64	static
-../source/games/gpsGame/gpsGame.c:68:9:getSuccessFlag	4	static
-../source/games/gpsGame/gpsGame.c:72:6:setSuccessFlag	16	static
-../source/games/gpsGame/gpsGame.c:77:7:degToRad	24	static
-../source/games/gpsGame/gpsGame.c:80:7:radToDeg	24	static
+../source/games/gpsGame/gpsGame.c:19:7:distance	48	static
+../source/games/gpsGame/gpsGame.c:37:7:calculateBearing	64	static
+../source/games/gpsGame/gpsGame.c:59:8:getDistance	4	static
+../source/games/gpsGame/gpsGame.c:63:8:getBearing	4	static
+../source/games/gpsGame/gpsGame.c:68:7:degToRad	24	static
+../source/games/gpsGame/gpsGame.c:71:7:radToDeg	24	static

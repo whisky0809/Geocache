@@ -13,11 +13,16 @@ RM := rm -rf
 -include source/utils/sdCard/FatFs/subdir.mk
 -include source/utils/sdCard/subdir.mk
 -include source/utils/lcdScreen/subdir.mk
+-include source/utils/joystick/subdir.mk
 -include source/utils/gps/subdir.mk
 -include source/utils/comProtocols/Lpuart/subdir.mk
 -include source/utils/comProtocols/Lpi2c/subdir.mk
 -include source/utils/comProtocols/GPIO/subdir.mk
 -include source/utils/comProtocols/subdir.mk
+-include source/utils/colourSensor/subdir.mk
+-include source/utils/subdir.mk
+-include source/games/levelTwo/subdir.mk
+-include source/games/levelOne/subdir.mk
 -include source/games/gpsGame/subdir.mk
 -include source/subdir.mk
 -include device/subdir.mk

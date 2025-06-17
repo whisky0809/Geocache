@@ -12,9 +12,9 @@
 #include "stdlib.h"
 #include <stdio.h>
 
-
+float d;
+float b;
 const float PI = 3.14159265359;
-bool_t successFlag = FALSE;
 
 float distance(coordinates_t* loc1, coordinates_t* loc2) { //Haversine distance formula
 
@@ -22,23 +22,14 @@ float distance(coordinates_t* loc1, coordinates_t* loc2) { //Haversine distance 
 
 	float differenceLat = degToRad(loc2->lat - loc1->lat);
     float differenceLon = degToRad(loc2->lon - loc1->lon);
-
-
-
-
     float a = sin(differenceLat / 2) * sin(differenceLat / 2) +
                cos(degToRad(loc1->lat)) * cos(degToRad(loc2->lat)) *
                sin(differenceLon / 2) * sin(differenceLon / 2);
 
     float c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    d = EARTH_RADIUS * c;  // Distance in meters
 
-    float d = EARTH_RADIUS * c;  // Distance in meters
-    if(d < TARGET_RADIUS)
-    {
-    	setSuccessFlag(TRUE);
-    	//arrived at location
 
-    }
     return d;
 
 }
@@ -60,18 +51,18 @@ float calculateBearing(coordinates_t *loc1, coordinates_t* loc2) { //formula to 
     if (bearing < 0) {
         bearing += 360; // Normalize to 0-360 degrees
     }
+    b = bearing;
     return bearing;
 
 
 }
-
-bool_t* getSuccessFlag()
+float* getDistance()
 {
-return &successFlag;
+return &d;
 }
-void setSuccessFlag(bool_t setting)
+float* getBearing()
 {
-	successFlag = setting;
+return &b;
 }
 
 float degToRad(float degrees) { //helper function for switching to radians

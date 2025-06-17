@@ -1,6 +1,7 @@
 source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.o \
  source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.d: \
  ../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c \
+ ../source/utils/comProtocols/Lpi2c/../fifo16.h \
  ../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_ADC.h \
@@ -47,8 +48,8 @@ source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.o \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_VBAT.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WAKETIMER.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WUU.h \
- C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WWDT.h \
- C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/fifo16.h
+ C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WWDT.h
+../source/utils/comProtocols/Lpi2c/../fifo16.h:
 ../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_ADC.h:
@@ -96,4 +97,3 @@ C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_drive
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WAKETIMER.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WUU.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WWDT.h:
-C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/fifo16.h:

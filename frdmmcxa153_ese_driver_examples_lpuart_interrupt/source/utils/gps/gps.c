@@ -53,9 +53,8 @@ int gpsInit(void)
 // Local function implementation
 // -----------------------------------------------------------------------------
 
- void updatePosition()
+void updatePosition()
 {
-
 	while(lpuart2_rxcnt() > 0)
 	{
 		char c = (char)lpuart2_getchar();
@@ -89,7 +88,6 @@ void parseNMEA(char buffer[128], coordinates_t *boxCoordinates)
 	char *token; // Tokenize the NMEA sentence
 	int field = 0;
 	while ((token = strsep(&ptr, ",")) != NULL) {
-	//field 0: name, field 1: UTC time
 	switch(field)
 	{
 		case 2:
@@ -114,11 +112,8 @@ void parseNMEA(char buffer[128], coordinates_t *boxCoordinates)
 	        break;
 	       }
 
-	        //field 6:valid fix, field 7: number of satellites, field 8 horizontal dillution, field 9: altitude, field 10: geoidal seperation magnitude, field 11:geoidal seperation unit, field 12: differential GPS, field 13: stuff for error detection
 	        field++;
 			token = strsep(&buffer, ",");
-
-	        //token = strtok(NULL, ","); // Move to the next field
 	    }
 	    if (lat && lon && latDir && lonDir)
 	    {

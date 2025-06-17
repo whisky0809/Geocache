@@ -35,17 +35,22 @@
  *****************************************************************************/
 #include <MCXA153.h>
 #include <stdio.h>
-#include "../source/utils/gps/gps.h"
-#include "../source/games/gpsGame/gpsGame.h"
-#include "../source/utils/comProtocols/GPIO/gpio_output.h"
-#include "../source/utils/comProtocols/Lpuart/lpuart2_interrupt.h"
-#include "../source/utils/comProtocols/Lpuart/lpuart0_interrupt.h"
-#include "../source/utils/sdCard/sdCard.h"
-#include "../source/utils/temperatureSensor/lm35d_polling.h"
-
+#include "utils/gps/gps.h"
+#include "games/gpsGame/gpsGame.h"
+#include "games/LevelTwo/levelTwo.h"
+#include "utils/comProtocols/GPIO/gpio_output.h"
+#include "utils/comProtocols/Lpuart/lpuart2_interrupt.h"
+#include "utils/comProtocols/Lpuart/lpuart0_interrupt.h"
+#include "utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.h"
+#include "utils/sdCard/sdCard.h"
+#include "utils/lcdScreen/lcd.h"
+#include "utils/temperatureSensor/lm35d_polling.h"
+#include "utils/flag.h"
+#include "utils/timer.h"
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 // -----------------------------------------------------------------------------
 // Local type definitions
 // -----------------------------------------------------------------------------
@@ -77,8 +82,8 @@ coordinates_t targets[4];
 // -----------------------------------------------------------------------------
 // Local variables
 // -----------------------------------------------------------------------------
-int ms = 0;
-int won = 0;
+//int ms = 0;
+//int won = 0;
 int wrote = 1;
 // -----------------------------------------------------------------------------
 // Main application
@@ -91,64 +96,80 @@ int main(void)
 
 
 	int u = 1;
+    sdInit();
+    lpi2c0_controller_init();
+    tcs34725_init();
+    lcd_init();
     gpio_output_init();
     gpsInit();
-    sdInit();
+    timerInit();
     lm35d_init();
     int gameState = LEVEL1; //change to settings from csv file
-    SysTick_Config(48000);
-    NVIC_SetPriority (SysTick_IRQn, 7);
+
 
            // Enable interrupts
   __enable_irq();
 
-   //sdWrite();
+  sdWrite();
 
-
-
-
+  	lcd_clear();
+  	levelOne();
    //use f_unlink to delete the file after the run
 
     while(1)
     {
-    	updatePosition(); // checks buffer for new relevant NMEA sentence every cycle
+
+    	updatePosition();
+
+
+
+//LCDupdate();
+
+    	if(*getSuccessFlag())
+    	{gameState++;}
+
+    	if(getFix() == 1)
+    	{
+    	//LCDupdate();// checks buffer for new relevant NMEA sentence every cycle
     	//might add seperate file to handle all the game controlling and switching stuff
 
-    	if(getSuccessFlag())
-    	{
-    		gameState++;
-    	}
 
     	switch(gameState)
     	{
 
     	case LEVEL1:
+        	sdReadSettings(getTarget(),LEVEL1);
+
     		//sdReadSettings(getTarget(),LEVEL1);
     		//add level One Gameloop
     		//needs to include updatePosition on every iteration as well so that logs work accurately
     	    break;
     	case LEVEL2:
-    		//sdReadSettings(getTarget(),LEVEL2);
 
+    		sdReadSettings(getTarget(),LEVEL2);
+    		if(levelTwo())
+    			//{
+    			//setSuccessFlag(True);
+    			//}
     		//add level Two Gameloop
     		//needs to include updatePosition on every iteration as well so that logs work accurately
     	    break;
     	case LEVEL3:
-    		//sdReadSettings(getTarget(),LEVEL3);
+    		sdReadSettings(getTarget(),LEVEL3);
 
     		//add level Three Gameloop
     		//needs to include updatePosition on every iteration as well so that logs work accurately
     		break;
     	case LEVEL4:
-    		//sdReadSettings(getTarget(),LEVEL4);
+    		sdReadSettings(getTarget(),LEVEL4);
 
     		//add level Four Gameloop
     		//needs to include updatePosition on every iteration as well so that logs work accurately
     	    break;
 
     	}
-
-    	if(won == 1)
+    	}
+    	if(*getWon() == 1)
     	{
     		disableLpuart2();
     		int closed = 0;
@@ -169,9 +190,10 @@ int main(void)
     				    closed = 1; //read settings from laptop
     				}
     		}
-    		printf("done");
-    		won = 2;
+    		//printf("done");
+    		setWon(2);
     	}
+
 
 
 
@@ -185,19 +207,19 @@ int main(void)
 // -----------------------------------------------------------------------------
 // Local function implementation
 // -----------------------------------------------------------------------------
-
+/*
 void SysTick_Handler(void)
 {
 	 	ms++;
 
-	    if((ms % 1000) == 0 && won == 0 && getFix() == 0)
+	    if((ms % 1000) == 0 && won == 0 && getFix() == 0) // change fix condition to 1
 	    {
-	    	sdLog(12, getPosition());
+	    	sdLog(29, getPosition());
 	    }
-	    if((ms % 5000) == 0 && won == 0)
+	    if((ms % 20000) == 0 && won == 0)
 	    {
 	    	won = 1;
 	    }
 
 }
-
+*/

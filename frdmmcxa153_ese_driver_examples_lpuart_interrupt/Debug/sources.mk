@@ -16,12 +16,17 @@ OBJS :=
 SUBDIRS := \
 device \
 source/games/gpsGame \
+source/games/levelOne \
+source/games/levelTwo \
 source \
+source/utils/colourSensor \
 source/utils/comProtocols/GPIO \
 source/utils/comProtocols/Lpi2c \
 source/utils/comProtocols/Lpuart \
 source/utils/comProtocols \
+source/utils \
 source/utils/gps \
+source/utils/joystick \
 source/utils/lcdScreen \
 source/utils/sdCard/FatFs \
 source/utils/sdCard \

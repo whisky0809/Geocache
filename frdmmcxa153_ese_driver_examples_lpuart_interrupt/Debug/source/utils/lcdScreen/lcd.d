@@ -1,6 +1,6 @@
 source/utils/lcdScreen/lcd.o source/utils/lcdScreen/lcd.d: \
  ../source/utils/lcdScreen/lcd.c ../source/utils/lcdScreen/lcd.h \
- C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.h \
+ ../source/utils/lcdScreen/../comProtocols/Lpi2C/lpi2c0_controller_interrupt.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_ADC.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153_COMMON.h \
@@ -48,7 +48,7 @@ source/utils/lcdScreen/lcd.o source/utils/lcdScreen/lcd.d: \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WUU.h \
  C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_WWDT.h
 ../source/utils/lcdScreen/lcd.h:
-C:/Users/henri/Documents/MCUXpressoIDE_24.12.148/workspace/frdmmcxa153_ese_driver_examples_lpuart_interrupt/source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.h:
+../source/utils/lcdScreen/../comProtocols/Lpi2C/lpi2c0_controller_interrupt.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device\periph/PERI_ADC.h:
 C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_driver_examples_lpuart_interrupt\device/MCXA153_COMMON.h:

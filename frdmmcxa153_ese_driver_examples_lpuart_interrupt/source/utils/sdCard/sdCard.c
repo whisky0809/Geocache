@@ -9,7 +9,7 @@
 #include "../source/utils/comProtocols/Lpuart/lpuart0_interrupt.h"
 #include "../source/utils/comProtocols/Lpuart/lpuart2_interrupt.h"
 #include "../source/utils/gps/gps.h"
-
+#include <stdlib.h>
 #include <stdio.h>
 
 int u = 1;
@@ -34,12 +34,12 @@ void sdInit()
 }
 void sdWrite()
 {
-	fr = f_open(&Fil, LOGFILE, FA_WRITE | FA_OPEN_ALWAYS | FA_OPEN_APPEND);	//Create a file
+	fr = f_open(&Fil, SETFILE, FA_WRITE | FA_OPEN_ALWAYS);	//Create a file
+	printf("%d",fr);
 	    	    	if (fr == FR_OK) {
-	    	    		fr = f_lseek(&Fil, f_size(&Fil));
 	        	    	if (fr == FR_OK) {
-	        	    		//f_write(&Fil, "Henri,Luka,Beer\r\n",24  , &bw);	// Write data to the fil
-	        	    		//f_printf(&Fil, " %d \n\r", u);
+	        	    		f_write(&Fil, "11.1,N,12,E,13.1,N,12,E,11.1,N,12,E,11.1,N,12,E\r\n",16  , &bw);	// Write data to the fil
+	        	    		f_printf(&Fil, " %d \n\r", u);
 	    	    		}
 	    	    		fr = f_close(&Fil);
 	    	    	}
@@ -55,43 +55,46 @@ if (fr == FR_OK) {
 	        	    		    			char c = lpuart0_getchar();
 	        	    		    			if(c == '#') //handshake by laptop to declare its done
 	        	    		    			{done = 1;}
-	        	    		    			else
-	        	    		    			f_printf("%c",c);
-	        	    		    			//needs to print 4 locations for now
+	        	    		    			else{
+	        	    		    			f_printf("%c", c);
+	        	    		    			}
+	        	    		    			//needs to print 4 locations
 	    	    		}
 	    	    		fr = f_close(&Fil);
 	    	    	}
 }
 }
-void sdReadSettings(coordinates_t target, int level)
+void sdReadSettings(coordinates_t* target, int level)
 {
 	char buf[512];
 	sdBufWrite(SETFILE,buf,sizeof(buf)/sizeof(char));
-    char *ptr = buf;
+    char *ptr = &buf[0];
+
     char *token; // Tokenize the NMEA sentence
     int field = 0;
-    while ((token = strsep(&ptr, ",")) != NULL) {
+    token = strsep(&ptr, ",");
+    while ((token) != NULL) {
 
 
-    	if (field == 1 + level * 4) {
-    	    target.lat = atof(token);
-    	} else if (field == 2 + level * 4) {
-    	    target.latDir = token[0];
-    	} else if (field == 3 + level * 4) {
-    	    target.lon = atof(token);
-    	} else if (field == 4 + level * 4) {
-    	    target.lonDir = token[0];
+    	if (field ==  0 + (level * 4)) {
+    	    target->lat = atof(token);
+    	} else if (field == 1 + (level * 4 )) {
+    	    target->latDir = token[0];
+    	} else if (field == 2 + (level * 4)) {
+    	    target->lon = atof(token);
+    	} else if (field == 3 + (level * 4)) {
+    	    target->lonDir = token[0];
     	}
 
 		    	    			        //field 6:valid fix, field 7: number of satellites, field 8 horizontal dillution, field 9: altitude, field 10: geoidal seperation magnitude, field 11:geoidal seperation unit, field 12: differential GPS, field 13: stuff for error detection
 	field++;
 	token = strsep(&ptr, ",");
 	}
+
 }
 void sdLog(uint8_t temp, coordinates_t* pos)
 {
 	fr = f_open(&Fil, LOGFILE, FA_WRITE | FA_OPEN_ALWAYS | FA_OPEN_APPEND);	//Create a file
-	printf("%d", fr);
 	    	    	if (fr == FR_OK) {
 	    	    		fr = f_lseek(&Fil, f_size(&Fil));
 	        	    	if (fr == FR_OK) {
@@ -127,14 +130,17 @@ void sdReadLogs()
 {
 	sdRead(LOGFILE);
 }
+
+
+
 void sdBufWrite(char *filename, char *buffer, int size) {
 	fr = f_open(&Fil, filename, FA_READ);
-
 
 
 	if (fr == FR_OK) {
 		f_read(&Fil, buffer, size-1, &br);
 		buffer[br] = '\0';
+		//printf("%s",buffer);
 		f_close(&Fil);
 	}
 }

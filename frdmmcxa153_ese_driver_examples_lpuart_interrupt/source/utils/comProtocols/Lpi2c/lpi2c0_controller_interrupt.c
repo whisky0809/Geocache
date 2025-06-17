@@ -1,5 +1,5 @@
+#include "../fifo16.h"
 #include "lpi2c0_controller_interrupt.h"
-#include "../source/utils/comProtocols/fifo16.h"
 
 bool lpi2c0_txfifo_full(void);
 bool lpi2c0_rxfifo_empty(void);
@@ -27,8 +27,8 @@ void lpi2c0_controller_init(void)
     LPI2C0->MCFGR1 = LPI2C_MCFGR1_PRESCALE(0);
     LPI2C0->MCFGR2 = LPI2C_MCFGR2_FILTSDA(1) | LPI2C_MCFGR2_FILTSCL(1);
     LPI2C0->MCCR0 = LPI2C_MCCR0_DATAVD(0x0F) | LPI2C_MCCR0_SETHOLD(0x1D) | LPI2C_MCCR0_CLKHI(0x35) | LPI2C_MCCR0_CLKLO(0x3E);
-    LPI2C0->MCFGR1 |= LPI2C_MCFGR1_AUTOSTOP(1);
-    LPI2C0->MIER |= LPI2C_MIER_RDIE(1);
+    //LPI2C0->MCFGR1 |= LPI2C_MCFGR1_AUTOSTOP(1);
+    //LPI2C0->MIER |= LPI2C_MIER_RDIE(1);
     NVIC_SetPriority(LPI2C0_IRQn, 3);
     NVIC_ClearPendingIRQ(LPI2C0_IRQn);
     NVIC_EnableIRQ(LPI2C0_IRQn);
@@ -68,13 +68,13 @@ inline void lpi2c0_wait_busy(void)
     {}
 }
 
-inline bool lpi2c0_txfifo_full(void)
+bool lpi2c0_txfifo_full(void)
 {
     uint32_t n = (LPI2C0->MFSR & LPI2C_MFSR_TXCOUNT_MASK) >> LPI2C_MFSR_TXCOUNT_SHIFT;
     return n == 4;
 }
 
-inline bool lpi2c0_rxfifo_empty(void)
+bool lpi2c0_rxfifo_empty(void)
 {
     uint32_t n = (LPI2C0->MFSR & LPI2C_MFSR_RXCOUNT_MASK) >> LPI2C_MFSR_RXCOUNT_SHIFT;
     return n == 0;
@@ -82,6 +82,8 @@ inline bool lpi2c0_rxfifo_empty(void)
 
 void LPI2C0_IRQHandler(void)
 {
+    LPI2C0->MCFGR1 |= LPI2C_MCFGR1_AUTOSTOP(1);
+
     uint16_t c;
     NVIC_ClearPendingIRQ(LPI2C0_IRQn);
     if((LPI2C0->MSR & LPI2C_MSR_TDF_MASK) != 0)

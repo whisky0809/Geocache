@@ -7,6 +7,6 @@ C:\Users\henri\Documents\MCUXpressoIDE_24.12.148\workspace\frdmmcxa153_ese_drive
 ../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:55:10:lpi2c0_rxcnt	8	static
 ../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:60:10:lpi2c0_txcnt	8	static
 ../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:65:13:lpi2c0_wait_busy	4	static
-../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:71:13:lpi2c0_txfifo_full	16	static
-../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:77:13:lpi2c0_rxfifo_empty	16	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:71:6:lpi2c0_txfifo_full	16	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:77:6:lpi2c0_rxfifo_empty	16	static
 ../source/utils/comProtocols/Lpi2c/lpi2c0_controller_interrupt.c:83:6:LPI2C0_IRQHandler	16	static

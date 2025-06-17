@@ -16,8 +16,10 @@
 #define PATHNAME "0:/log.txt"
 void sdWrite();
 void sdRead(char* filename);
+void sdReadSettings(coordinates_t* target, int level);
 void sdBufWrite(char *filename, char *buffer, int size);
 void sdLog(uint8_t temp, coordinates_t* pos);
+void sdSettings();
 void sdReadLogs();
 void sdInit();
 
