@@ -1,0 +1,4 @@
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_polling.c:53:6:lpi2c0_controller_init2	8	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_polling.c:132:13:lpi2c0_wait_busy2	4	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_polling.c:139:13:lpi2c0_txfifo_full2	16	static
+../source/utils/comProtocols/Lpi2c/lpi2c0_controller_polling.c:149:13:lpi2c0_rxfifo_empty2	16	static

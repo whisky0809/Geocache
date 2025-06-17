@@ -1,0 +1,7 @@
+../source/utils/colourSensor/tcs34725_polling.c:51:13:delay	24	static
+../source/utils/colourSensor/tcs34725_polling.c:56:13:tcs34725_write_register	16	static
+../source/utils/colourSensor/tcs34725_polling.c:95:13:tcs34725_read_register	24	static
+../source/utils/colourSensor/tcs34725_polling.c:167:13:tcs34725_read_registers	24	static
+../source/utils/colourSensor/tcs34725_polling.c:217:6:tcs34725_init	16	static
+../source/utils/colourSensor/tcs34725_polling.c:268:6:tcs34725_data_available	16	static
+../source/utils/colourSensor/tcs34725_polling.c:281:6:tcs34725_get_color_data	40	static
